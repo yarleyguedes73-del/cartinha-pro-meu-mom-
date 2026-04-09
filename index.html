@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Pra Letícia ❤️</title>
+
+<style>
+  body {
+    background: #fff0f5;
+    font-family: Arial;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .box {
+    background: white;
+    padding: 25px;
+    display: inline-block;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    margin-top: 100px;
+  }
+
+  button {
+    padding: 12px 25px;
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+
+  #sim {
+    background-color: #ff4d88;
+    color: white;
+  }
+
+  #nao {
+    background-color: #999;
+    color: white;
+    position: absolute;
+  }
+
+  img {
+    width: 250px;
+    border-radius: 15px;
+    margin-top: 20px;
+  }
+
+  .contador {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #ff4d88;
+  }
+
+  .heart {
+    position: fixed;
+    bottom: 0;
+    font-size: 20px;
+    animation: subir 4s linear infinite;
+  }
+
+  @keyframes subir {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-100vh); opacity: 0; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- Música -->
+<iframe width="0" height="0" 
+src="https://www.youtube.com/embed/3cYd7dQ7w5w?autoplay=1&loop=1&playlist=3cYd7dQ7w5w"
+frameborder="0" allow="autoplay"></iframe>
+
+<div class="box">
+  <h2>Oi Letícia 💖</h2>
+  <p>
+    Esse é um presente secreto só pra você... 👀<br><br>
+    Tem certeza que quer abrir? 💌
+  </p>
+
+  <button id="sim" onclick="aceitar()">SIM 💖</button>
+  <button id="nao" onmouseover="fugir()">NÃO 😈</button>
+</div>
+
+<script>
+function fugir() {
+  let botao = document.getElementById("nao");
+
+  let x = Math.random() * (window.innerWidth - 100);
+  let y = Math.random() * (window.innerHeight - 50);
+
+  botao.style.left = x + "px";
+  botao.style.top = y + "px";
+}
+
+function aceitar() {
+  document.body.innerHTML = `
+    <h1 style="color:#ff4d88; margin-top:50px;">Eu te amo, Letícia ❤️🥹</h1>
+
+    <p style="font-size:18px; max-width:400px; margin:auto;">
+      Você é a melhor parte dos meus dias.<br><br>
+      Cada sorriso seu melhora tudo, e cada momento contigo fica guardado comigo.<br><br>
+      Desde que você entrou na minha vida, tudo ficou mais leve, mais bonito e mais feliz 💖
+    </p>
+
+    <div class="contador" id="contador"></div>
+
+    <img src="foto.jpg">
+  `;
+
+  setInterval(criarCoracao, 300);
+  atualizarContador();
+  setInterval(atualizarContador, 1000);
+}
+
+function atualizarContador() {
+  const inicio = new Date("2025-09-10T00:00:00");
+  const agora = new Date();
+
+  let diff = agora - inicio;
+
+  let dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+  let horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  let minutos = Math.floor((diff / (1000 * 60)) % 60);
+  let segundos = Math.floor((diff / 1000) % 60);
+
+  document.getElementById("contador").innerHTML =
+    `Estamos juntos há 💖<br><br>
+     ${dias} dias, ${horas} horas,<br>
+     ${minutos} minutos e ${segundos} segundos ❤️`;
+}
+
+function criarCoracao() {
+  const coracao = document.createElement("div");
+  coracao.classList.add("heart");
+  coracao.innerHTML = "💖";
+
+  coracao.style.left = Math.random() * 100 + "vw";
+  coracao.style.fontSize = (Math.random() * 20 + 10) + "px";
+
+  document.body.appendChild(coracao);
+
+  setTimeout(() => {
+    coracao.remove();
+  }, 4000);
+}
+</script>
+
+</body>
+</html>
